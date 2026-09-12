@@ -1,7 +1,9 @@
-# 版式库 · 8种核心版式
+# 版式库 · 8种核心版式（已实现）
 
 > 每种版式包含完整HTML示例，可直接使用
 > 所有版式需配合 css-templates/ 中的CSS模板使用
+>
+> **基线说明**：当前已实现 8 种纯文字版式（L1-L8）。guizang 原始 skill 有 32 种版式（风格A 10种 + 风格B 22种），其余 24 种为设计目标，待后续迭代实现。执行口径以 system-prompt/system-prompt.md 为准。
 
 ---
 
@@ -52,7 +54,14 @@
 </div>
 ```
 
+**条形颜色变体**：
+- 默认（深蓝）：`<div class="bf">`
+- 浅蓝：`<div class="bf lt">`
+- 近黑：`<div class="bf dk">`
+
 ## L4 双栏看板
+
+**用途**：左侧任务清单 + 右侧项目进度
 
 ```html
 <div class="p">
@@ -75,7 +84,19 @@
 </div>
 ```
 
+**状态点变体**：
+- 完成（绿）：`<div class="dot done">`
+- 进行中（黄）：`<div class="dot doing">`
+- 待办（灰）：`<div class="dot todo">`
+
+**进度条颜色变体**：
+- 正常（蓝）：`<div class="pf">`
+- 警告（黄）：`<div class="pf warn">`
+- 危险（红）：`<div class="pf danger">`
+
 ## L5 数据表格
+
+**用途**：结构化数据展示
 
 ```html
 <div class="p">
@@ -85,11 +106,14 @@
 <tr><td>DAU</td><td>12,847</td><td style="color:#1A7F37">+5.2%</td></tr>
 <tr><td>新增用户</td><td>326</td><td style="color:#1A7F37">+12.4%</td></tr>
 <tr><td>留存率</td><td>68.3%</td><td style="color:#CF222E">-1.1%</td></tr>
+<tr><td>平均时长</td><td>14m 32s</td><td style="color:#1A7F37">+8.7%</td></tr>
 </table>
 </div>
 ```
 
 ## L6 引言金句
+
+**用途**：大字号引用，强调核心观点
 
 ```html
 <div class="p">
@@ -99,6 +123,8 @@
 ```
 
 ## L7 三栏内容
+
+**用途**：三个并列的策略/方案/特点
 
 ```html
 <div class="p">
@@ -113,12 +139,16 @@
 
 ## L8 结束页
 
+**用途**：演示文稿最后一页，致谢+联系方式
+
 ```html
 <div class="p" style="display:flex;flex-direction:column;justify-content:center;min-height:70vh">
 <div class="ti" style="text-align:center">谢谢 <em>· Thank You</em></div>
 <div style="text-align:center;font-size:14px;color:#666;margin-top:20px">联系人 · 邮箱 · 日期</div>
 </div>
 ```
+
+---
 
 ## 版式组合建议
 

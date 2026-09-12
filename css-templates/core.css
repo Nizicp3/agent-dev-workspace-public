@@ -1,5 +1,5 @@
 /* 归藏PPT设计助手 · 核心CSS模板 */
-/* 适用于封面、内容页、表格、引言等基础版式 */
+/* 与 system-prompt/system-prompt.md 中的CSS完全一致 */
 /* 规范：每行一条规则，大写hex，class选择器，无单引号，sans-serif */
 
 .p{background:#F4F1EA;font-family:sans-serif;padding:40px 48px;color:#0A0A0B}
@@ -9,7 +9,8 @@
 .dt{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#002FA7;text-align:right}
 .sec{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#999;margin:20px 0 12px;border-bottom:1px solid #DDD;padding-bottom:4px}
 .r{display:flex;gap:12px;margin-bottom:20px}
-.c{flex:1;background:#FFF;border-top:3px solid #002FA7;padding:14px}
+.c{flex:1;background:#FFF;border-top:3px solid #002FA7;padding:14px;cursor:pointer}
+.c:hover{background:#E8EEFB}
 .cl{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#AAA}
 .cv{font-size:32px;font-weight:200;letter-spacing:-0.02em}
 .q{font-size:24px;font-weight:200;font-style:italic;color:#002FA7;border-left:3px solid #002FA7;padding-left:16px;margin:20px 0;line-height:1.5}

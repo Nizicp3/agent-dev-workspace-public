@@ -1,6 +1,6 @@
 /* 归藏PPT设计助手 · 仪表盘CSS模板 */
-/* 适用于数据看板：KPI卡片、CSS条形图、双栏布局、进度条、任务清单 */
-/* 在 core.css 基础上追加，或单独使用 */
+/* 在 core.css 基础上追加，适用于数据看板：KPI卡片、CSS条形图、双栏布局、进度条、任务清单 */
+/* 与 system-prompt/system-prompt.md 中的CSS完全一致 */
 
 .bs{display:flex;align-items:flex-end;gap:10px;height:120px;background:#FFF;padding:16px;margin-bottom:20px}
 .bc{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
@@ -26,4 +26,3 @@
 .pf{height:100%;background:#002FA7}
 .warn{background:#D4A017}
 .danger{background:#CF222E}
-.c:hover{background:#E8EEFB}
