@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>参赛方案必含图表 - 方案逻辑图 & Before/After流程对比图</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;background:#f0f2f5;padding:30px;}
+  .chart-card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);padding:36px 40px;margin-bottom:36px;max-width:1100px;margin-left:auto;margin-right:auto;}
+  .chart-title{font-size:20px;font-weight:800;color:#1e293b;margin-bottom:6px;text-align:center;}
+  .chart-sub{font-size:13px;color:#64748b;text-align:center;margin-bottom:28px;}
+  .logic-wrap{display:flex;flex-direction:column;align-items:center;gap:0;}
+  .logic-row{display:flex;align-items:center;justify-content:center;gap:16px;width:100%;}
+  .logic-arrow{color:#94a3b8;font-size:22px;margin:6px 0;font-weight:bold;}
+  .logic-box{border-radius:12px;padding:14px 20px;text-align:center;font-size:14px;font-weight:600;line-height:1.5;}
+  .logic-input{background:#eff6ff;border:2px solid #3b82f6;color:#1e40af;min-width:260px;}
+  .logic-platform{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;min-width:420px;padding:18px 24px;box-shadow:0 4px 16px rgba(37,99,235,.3);}
+  .logic-platform .pt{font-size:16px;font-weight:800;margin-bottom:4px;}
+  .logic-platform .pd{font-size:12px;font-weight:400;opacity:.85;}
+  .logic-platform .tags{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:10px;}
+  .logic-platform .tag{background:rgba(255,255,255,.18);border-radius:999px;padding:3px 12px;font-size:11px;font-weight:500;}
+  .logic-scene{background:#f0fdf4;border:2px solid #22c55e;color:#166534;min-width:380px;padding:16px 20px;}
+  .logic-scene .st{font-size:15px;font-weight:800;margin-bottom:8px;}
+  .logic-flow{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;}
+  .logic-step{background:#fff;border:1px solid #86efac;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:600;color:#166534;}
+  .logic-sep{color:#86efac;font-size:14px;font-weight:bold;}
+  .logic-side{display:flex;gap:16px;width:100%;margin-top:8px;}
+  .logic-side-box{flex:1;border-radius:10px;padding:12px 16px;font-size:13px;}
+  .logic-knowledge{background:#fefce8;border:1.5px solid #eab308;color:#854d0e;}
+  .logic-promote{background:#faf5ff;border:1.5px solid #a855f7;color:#6b21a8;}
+  .logic-side-box .lt{font-weight:800;margin-bottom:4px;font-size:13px;}
+  .logic-output{background:#f8fafc;border:2px dashed #64748b;color:#334155;min-width:300px;}
+  .ba-wrap{display:grid;grid-template-columns:1fr 60px 1fr;gap:0;align-items:stretch;}
+  .ba-col{padding:20px;border-radius:14px;}
+  .ba-before{background:#fef2f2;border:2px solid #fca5a5;}
+  .ba-after{background:#f0fdf4;border:2px solid #86efac;}
+  .ba-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
+  .ba-mid .arrow-big{font-size:36px;color:#f59e0b;font-weight:bold;}
+  .ba-mid .label{font-size:12px;font-weight:700;color:#64748b;text-align:center;line-height:1.4;}
+  .ba-header{text-align:center;margin-bottom:16px;padding-bottom:12px;border-bottom:2px dashed;}
+  .ba-before .ba-header{border-color:#fca5a5;}
+  .ba-after .ba-header{border-color:#86efac;}
+  .ba-header h3{font-size:17px;font-weight:800;margin-bottom:4px;}
+  .ba-before .ba-header h3{color:#dc2626;}
+  .ba-after .ba-header h3{color:#16a34a;}
+  .ba-header .time{font-size:13px;font-weight:700;}
+  .ba-before .ba-header .time{color:#dc2626;}
+  .ba-after .ba-header .time{color:#16a34a;}
+  .ba-steps{display:flex;flex-direction:column;gap:8px;}
+  .ba-step{display:flex;align-items:center;gap:10px;background:#fff;border-radius:8px;padding:10px 12px;font-size:12.5px;line-height:1.4;}
+  .ba-step .num{flex:0 0 24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;}
+  .ba-before .ba-step .num{background:#ef4444;}
+  .ba-after .ba-step .num{background:#22c55e;}
+  .ba-step .txt{flex:1;}
+  .ba-step .txt b{display:block;font-size:12.5px;margin-bottom:2px;}
+  .ba-step .txt span{font-size:11px;color:#64748b;}
+  .ba-step.auto{border:1.5px solid #86efac;background:#f0fdf4;}
+  .ba-step.auto .txt b{color:#166534;}
+  .ba-step.human{border:1.5px solid #fcd34d;background:#fffbeb;}
+  .ba-step.human .txt b{color:#92400e;}
+  .ba-badge{display:inline-block;font-size:10px;font-weight:700;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle;}
+  .badge-auto{background:#dcfce7;color:#166534;}
+  .badge-human{background:#fef3c7;color:#92400e;}
+  .ba-footer{margin-top:14px;padding-top:12px;border-top:2px dashed;text-align:center;}
+  .ba-before .ba-footer{border-color:#fca5a5;}
+  .ba-after .ba-footer{border-color:#86efac;}
+  .ba-footer .stat{font-size:13px;font-weight:700;}
+  .ba-before .ba-footer .stat{color:#dc2626;}
+  .ba-after .ba-footer .stat{color:#16a34a;}
+  .ba-footer .desc{font-size:11px;color:#64748b;margin-top:2px;}
+</style>
+</head>
+<body>
+<div class="chart-card">
+  <div class="chart-title">图1：方案逻辑图（业务流程图）</div>
+  <div class="chart-sub">专业能力工作流生成智能体 —— 以每日邮件复盘为首个落地场景的运营智能化方案</div>
+  <div class="logic-wrap">
+    <div class="logic-box logic-input">业务人员描述需求（自然语言）<br><span style="font-size:11px;font-weight:400;color:#3b82f6;">如：帮我做一个每天自动整理邮件和待办的智能体</span></div>
+    <div class="logic-arrow">▼</div>
+    <div class="logic-box logic-platform">
+      <div class="pt">专业能力工作流生成智能体（平台层）</div>
+      <div class="pd">用AI造AI · 零代码自助生成业务智能体</div>
+      <div class="tags"><span class="tag">需求解析</span><span class="tag">方案编排</span><span class="tag">YAML生成</span><span class="tag">影刀RPA生成</span><span class="tag">排障验证</span><span class="tag">技能拆解</span></div>
+    </div>
+    <div class="logic-arrow">▼</div>
+    <div class="logic-box logic-scene">
+      <div class="st">首个落地场景：每日邮件复盘智能体</div>
+      <div class="logic-flow"><span class="logic-step">RPA自动采集邮件</span><span class="logic-sep">→</span><span class="logic-step">AI智能分类</span><span class="logic-sep">→</span><span class="logic-step">待办自动提取</span><span class="logic-sep">→</span><span class="logic-step">生成复盘报告</span><span class="logic-sep">→</span><span class="logic-step">人工确认编辑</span><span class="logic-sep">→</span><span class="logic-step">到期自动提醒</span></div>
+    </div>
+    <div class="logic-arrow">▼</div>
+    <div class="logic-box logic-output">每日工作复盘报告 + 结构化待办清单 + 业务智能问答</div>
+    <div class="logic-side">
+      <div class="logic-side-box logic-knowledge"><div class="lt">能力沉淀：专业技能拆解</div>业务制度/专家经验 → 结构化知识库 → 智能体检索调用 → 全员复用、经验传承</div>
+      <div class="logic-side-box logic-promote"><div class="lt">推广复制：更多业务场景</div>报表自动汇总 → 监管报送提醒 → 业务流程跟踪 → 客户服务辅助 → 全运营条线智能化</div>
+    </div>
+  </div>
+</div>
+<div class="chart-card">
+  <div class="chart-title">图2：业务流程对比图（Before / After）</div>
+  <div class="chart-sub">引入智能体前后，运营人员每日邮件复盘与待办管理流程对比</div>
+  <div class="ba-wrap">
+    <div class="ba-col ba-before">
+      <div class="ba-header"><h3>Before：当前人工流程</h3><div class="time">总耗时：约 2-2.5 小时/人/天</div></div>
+      <div class="ba-steps">
+        <div class="ba-step"><div class="num">1</div><div class="txt"><b>上班开机，打开邮箱</b><span>30-50封邮件待处理</span></div></div>
+        <div class="ba-step"><div class="num">2</div><div class="txt"><b>逐封阅读全部邮件</b><span>60-90分钟，无论重要性都需人工看</span></div></div>
+        <div class="ba-step"><div class="num">3</div><div class="txt"><b>人工判断重要性和分类</b><span>凭经验判断，质量因人而异</span></div></div>
+        <div class="ba-step"><div class="num">4</div><div class="txt"><b>手动提取待办事项和截止时间</b><span>易遗漏，遗漏率5%-15%</span></div></div>
+        <div class="ba-step"><div class="num">5</div><div class="txt"><b>手动整理待办清单文档</b><span>30分钟，格式不统一</span></div></div>
+        <div class="ba-step"><div class="num">6</div><div class="txt"><b>凭记忆跟进和提醒</b><span>易遗忘，无系统记录</span></div></div>
+      </div>
+      <div class="ba-footer"><div class="stat">待办遗漏率 5%-15% · 质量不稳定 · 经验难沉淀</div><div class="desc">人工角色：执行者（逐封处理、重复劳动）</div></div>
+    </div>
+    <div class="ba-mid"><div class="arrow-big">➜</div><div class="label">引入<br>智能体</div><div style="font-size:11px;color:#94a3b8;text-align:center;">效率提升<br><b style="color:#16a34a;font-size:16px;">≥90%</b></div></div>
+    <div class="ba-col ba-after">
+      <div class="ba-header"><h3>After：智能体优化流程</h3><div class="time">总耗时：约 8-10 分钟/人/天（含人工审核）</div></div>
+      <div class="ba-steps">
+        <div class="ba-step auto"><div class="num">1</div><div class="txt"><b>点击开始复盘 <span class="ba-badge badge-auto">自动</span></b><span>10秒操作，触发智能体</span></div></div>
+        <div class="ba-step auto"><div class="num">2</div><div class="txt"><b>RPA自动采集邮件 <span class="ba-badge badge-auto">自动</span></b><span>3分钟，收件箱+已发送+附件</span></div></div>
+        <div class="ba-step auto"><div class="num">3</div><div class="txt"><b>AI智能分类+待办提取 <span class="ba-badge badge-auto">自动</span></b><span>2分钟，分类准确率≥90%</span></div></div>
+        <div class="ba-step auto"><div class="num">4</div><div class="txt"><b>自动生成复盘报告+待办清单 <span class="ba-badge badge-auto">自动</span></b><span>2分钟，结构化输出</span></div></div>
+        <div class="ba-step human"><div class="num">5</div><div class="txt"><b>运营人员确认/编辑待办 <span class="ba-badge badge-human">人工审核</span></b><span>5分钟，从执行者变为审核者</span></div></div>
+        <div class="ba-step auto"><div class="num">6</div><div class="txt"><b>系统自动提醒+次日回顾 <span class="ba-badge badge-auto">自动</span></b><span>到期提醒，有记录可追溯</span></div></div>
+      </div>
+      <div class="ba-footer"><div class="stat">待办遗漏率 ≤2% · 质量标准统一 · 知识持续沉淀</div><div class="desc">人工角色：审核者（确认+编辑，聚焦判断决策）</div></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
