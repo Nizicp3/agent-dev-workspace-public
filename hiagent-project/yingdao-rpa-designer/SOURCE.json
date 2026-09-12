@@ -1,0 +1,15 @@
+{
+  "artifact": "yingdao-rpa-designer",
+  "version": "2026.09.08-r1",
+  "repository": "Nizicp3/yingdao-rpa-designer",
+  "branch": "codex/takeover-yingdao-rpa-designer",
+  "remote_commit": "2ed4b44e0bd5f86cf812d42d4b92c40bf807e996",
+  "remote_sync_status": "published_and_content_verified",
+  "verification": {
+    "frontmatter_and_relative_links": "pass",
+    "review_scenarios": "pass",
+    "official_quick_validate": "not_run_missing_yaml_runtime",
+    "local_install": "8_files_sha256_verified",
+    "remote_publish": "9_files_content_verified"
+  }
+}

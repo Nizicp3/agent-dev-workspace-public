@@ -1,0 +1,4 @@
+interface:
+  display_name: "影刀 RPA 开发设计师"
+  short_description: "设计、验证并安全交付影刀低码、Python 与原生工程"
+  default_prompt: "Use $yingdao-rpa-designer to design and evidence-check this Yingdao RPA automation before delivery."

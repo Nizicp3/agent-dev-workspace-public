@@ -1,0 +1,15 @@
+{
+  "version": "2026.09.08-r1",
+  "hash_algorithm": "SHA-256",
+  "files": [
+    {"path": "SOURCE.json", "bytes": 626, "sha256": "e95bd1e9e9a5b8dfe1668951748f143260eaedac8cb33a4b7c5d07e3ad917a47"},
+    {"path": "yingdao-rpa-designer/SKILL.md", "bytes": 7548, "sha256": "5652f56341c3ecb99a56b7f46fe2256c309ce368cd023020fb3c8c14757b85cd"},
+    {"path": "yingdao-rpa-designer/agents/openai.yaml", "bytes": 267, "sha256": "404c5638dff7bb82244fcdafaa4534be3f8fba19799101a8e44c8eb3b30aa6d0"},
+    {"path": "yingdao-rpa-designer/references/delivery-and-diagnostics.md", "bytes": 3962, "sha256": "d6f3072952e2f7f07537d5b7afce38bbb806093bb0498e9ebbaef0ef15c87cc1"},
+    {"path": "yingdao-rpa-designer/references/http-report-download.md", "bytes": 6585, "sha256": "105d552b49597ee8cc6ee5d7454f4d3b84732436d0eb08d8770ef49324716836"},
+    {"path": "yingdao-rpa-designer/references/module-loading-and-deployment.md", "bytes": 3388, "sha256": "2f3e1c1f4c5630d9f1392820442bed2a5afde3cbfa10488a54f152094d2ea4d5"},
+    {"path": "yingdao-rpa-designer/references/native-project-evidence-gates.md", "bytes": 4261, "sha256": "0278c2ec2d2918c85b70fa6f37bd86d3d4c9a2cec98e7852b285e49c75704c12"},
+    {"path": "yingdao-rpa-designer/references/rendering-and-printing.md", "bytes": 2429, "sha256": "51af3ef1b012a90a5fbbd7506463d7708e9ff334fb3d18c9176080bcf41d5bbe"},
+    {"path": "yingdao-rpa-designer/references/side-effects-and-retry.md", "bytes": 2631, "sha256": "392a930392f075a78c9011a770823aba660483f3dc9d76f7a23fe19ad07de597"}
+  ]
+}
