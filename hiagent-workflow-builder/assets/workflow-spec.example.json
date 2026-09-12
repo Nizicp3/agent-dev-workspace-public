@@ -1,0 +1,32 @@
+{
+  "spec_version": "1.0",
+  "workflow_key": "example-material-answer-v1",
+  "name": "材料问答示例",
+  "description": "归一用户问题后，根据已经检索到的证据生成答复",
+  "inputs": [
+    {"name": "query", "description": "用户问题", "required": true, "type": "string"},
+    {"name": "knowledge_context", "description": "智能体知识库已经检索到的证据文本", "required": false, "type": "string"}
+  ],
+  "steps": [
+    {
+      "id": "normalize",
+      "type": "code",
+      "name": "输入归一",
+      "code": "def handler(params):\n    return {\"safe_query\": str(params.get(\"query\", \"\")).strip(), \"evidence\": str(params.get(\"knowledge_context\", \"\")).strip()}",
+      "inputs": {"query": "start.query", "knowledge_context": "start.knowledge_context"},
+      "outputs": ["safe_query", "evidence"]
+    },
+    {
+      "id": "answer",
+      "type": "llm",
+      "name": "证据答复",
+      "system_prompt": "只能依据输入证据回答。证据不足时明确说明需要补充或人工复核。",
+      "prompt": "用户问题：{{query}}\n证据：{{evidence}}",
+      "inputs": {"query": "normalize.safe_query", "evidence": "normalize.evidence"},
+      "max_tokens": 1024,
+      "temperature": 0.1,
+      "top_p": 0.9
+    }
+  ],
+  "outputs": {"reply": "answer.raw_output"}
+}

@@ -1,0 +1,9 @@
+{
+  "profile_version": "1.0",
+  "schema_profile": "hiagent-company-v2",
+  "workspace_id": "__TARGET_WORKSPACE_ID__",
+  "model": {
+    "id": "__TARGET_MODEL_ID__",
+    "name": "__TARGET_MODEL_NAME__"
+  }
+}
